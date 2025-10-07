@@ -1,3 +1,4 @@
+console.log("Nomor 1");
 var perkenalan = 'Nama saya adalah';
 var nama = "Byas"; 
 var kata1 = "saya";
@@ -14,7 +15,7 @@ var kalimat = perkenalan + " " + nama + ". " + kata1 + " " + kata2 + " " + kata3
 console.log(kalimat);
 
 console.log("----------------------------------------------------------");
-
+console.log("Nomor 2");
 
 var abjad = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var angka = "0123456789";
@@ -32,6 +33,7 @@ var password3 = abjad[17] + angka[4] + abjad[7] + angka[4] + angka[5] + angka[1]
 console.log("password ke tiga : " + password3);
 
 console.log("----------------------------------------------------------");
+console.log("Nomor 3");
 
 var sentence2 = 'wow JavaScript is so cool';
 
@@ -48,6 +50,7 @@ console.log('Fourth Word: ' + fourthWord2);
 console.log('Fifth Word: ' + fifthWord2);
 
 console.log("----------------------------------------------------------");
+console.log("Nomor 4");
 
 var sentence3 = 'wow JavaScript is so cool';
 
@@ -70,6 +73,7 @@ console.log('Fourth Word: ' + fourthWord3 + ', with length: ' + fourthWordLength
 console.log('Fifth Word: ' + fifthWord3 + ', with length: ' + fifthWordLength);
 
 console.log("----------------------------------------------------------");
+console.log("Nomor 5");
 
 var abjad = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -86,6 +90,7 @@ var kode3 = abjad.indexOf("I") + "-" + abjad.indexOf("M") + "-" + abjad.indexOf(
 console.log("kode 3: " + kode3);
 
 console.log("----------------------------------------------------------");
+console.log("Nomor 6");
 
 var pertama = "saya";
 var kedua = "senang";
@@ -102,6 +107,7 @@ var hasil =
 console.log(hasil);
 
 console.log("----------------------------------------------------------");
+console.log("Nomor 7");
 
 var panjang = "12";
 var lebar = "7";
@@ -122,6 +128,7 @@ console.log("Luas Persegi Panjang = " + luasPersegiPanjang);
 console.log("Luas Segitiga = " + luasSegitiga);
 
 console.log("----------------------------------------------------------");
+console.log("Nomor 8");
 
 var sisi = " 1 2 ";
 var jariJari = "7.5";
