@@ -101,7 +101,7 @@ var keempat = "javascript";
 var hasil =
   pertama.charAt(0).toUpperCase() + pertama.slice(1) + " " +
   kedua.slice(0, 5) + kedua.charAt(5).toUpperCase() + " " +
-  ketiga.slice(0, 6) + ketiga.charAt(6 - 1).toUpperCase() + " " +
+  ketiga.slice(0, 6) + ketiga.charAt(7 - 1).toUpperCase() + " " +
   keempat.toUpperCase();
 
 console.log(hasil);
