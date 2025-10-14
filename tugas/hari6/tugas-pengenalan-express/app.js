@@ -28,32 +28,26 @@ app.get('/data-orang', (req, res) => {
         {id: 9, name: "Shohei Ohtani", umur: 28, pekerjaan: "Pemain Baseball", jenisKelamin: "L"},
         {id: 11, name: "Maria Sharapova", umur: 35, pekerjaan: "Petenis", jenisKelamin: "P"}
     ];
-
-    // Ambil parameter dari URL
-    let umurParam = parseFloat(req.query.umur);  // Contoh: ?umur=30
-    let genderParam = req.query.gender;  // Contoh: ?gender=L
-
-    // Filter data berdasarkan parameter
-    let filteredData = dataOrang;  // Mulai dengan data lengkap
+    
+    let umurParam = parseFloat(req.query.umur); 
+    let genderParam = req.query.gender;  
+    let filteredData = dataOrang;
 
     if (!isNaN(umurParam)) {
-        // Filter umur >= umurParam
         filteredData = filteredData.filter(item => item.umur >= umurParam);
     }
 
     if (genderParam) {
-        // Filter berdasarkan gender
         filteredData = filteredData.filter(item => item.jenisKelamin === genderParam);
     }
 
-    // Buat respons string
     let response = '';
     if (filteredData.length > 0) {
         filteredData.forEach((item, index) => {
             response += `${index + 1}. ${item.name} - Pekerjaan: ${item.pekerjaan} - Umur: ${item.umur} Tahun\n`;
         });
     } else {
-        response = 'Tidak ada data yang sesuai.';  // Opsional, untuk kasus tidak ada hasil
+        response = 'Tidak ada data yang sesuai.';
     }
 
 
@@ -61,7 +55,6 @@ app.get('/data-orang', (req, res) => {
 });
 
 app.get('/data-orang/:id', (req, res) => {
-    // Array dataOrang seperti yang ditentukan
     let dataOrang = [
         {id: 1, name: "John", umur: 30, pekerjaan: "Penulis", jenisKelamin: "L"},
         {id: 4, name: "Benzema", umur: 34, pekerjaan: "Pemain Bola", jenisKelamin: "L"},
@@ -70,19 +63,12 @@ app.get('/data-orang/:id', (req, res) => {
         {id: 11, name: "Maria Sharapova", umur: 35, pekerjaan: "Petenis", jenisKelamin: "P"}
     ];
 
-    // Ambil parameter ID dari URL (misalnya, /data-orang/1)
-    let idParam = parseInt(req.params.id);  // Konversi ke number
-
-    // Cari data yang sesuai
+    let idParam = parseInt(req.params.id);
     let person = dataOrang.find(item => item.id === idParam);
 
     if (person) {
-        // Tentukan gelar berdasarkan jenisKelamin
         let title = person.jenisKelamin === "L" ? "Pak" : "Bu";
-        
-        // Buat respons string
         let response = `${title} ${person.name} adalah seorang ${person.pekerjaan} yang berusia ${person.umur} tahun`;
-        
         res.send(response);
     } else {
         // Jika tidak ditemukan
