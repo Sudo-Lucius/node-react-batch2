@@ -1,0 +1,111 @@
+const { connectionPool } = require('../config/db');
+
+function getIndeksNilai(nilai) {
+    if (nilai >= 80) return 'A';
+    if (nilai >= 70 && nilai < 80) return 'B';
+    if (nilai >= 60 && nilai < 70) return 'C';
+    if (nilai >= 50 && nilai < 60) return 'D';
+    return 'E';
+}
+
+const createNilaiMahasiswa = (req, res) => {
+    const { nama, mata_kuliah, nilai } = req.body;
+
+    
+    if (!nama || !mata_kuliah || nilai === undefined) {
+        return res.status(400).json({ error: 'Mohon isi nama, mata_kuliah, dan nilai' });
+    }
+
+    if (typeof nilai !== 'number' || nilai < 0 || nilai > 100) {
+        return res.status(400).json({ error: 'Data nilai salah: Nilai harus antara 0 dan 100' });
+    }
+
+    const indeks_nilai = getIndeksNilai(nilai);  
+
+    const queryText = 'INSERT INTO nilai_mahasiswa (nama, mata_kuliah, nilai, indeks_nilai, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())';
+    
+    connectionPool.query(queryText, [nama, mata_kuliah, nilai, indeks_nilai], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Terjadi kesalahan saat menyimpan data' });
+        }
+        res.status(201).json({ message: 'Nilai mahasiswa berhasil ditambahkan', status: 'success', id: result.insertId });
+    });
+};
+
+const readNilaiMahasiswa = (req, res) => {
+    const queryText = 'SELECT * FROM nilai_mahasiswa';
+    connectionPool.query(queryText, (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data' });
+        }
+        res.status(200).json(data);
+    });
+};
+
+const readNilaiMahasiswaById = (req, res) => {
+    const { id } = req.params;
+    const queryText = 'SELECT * FROM nilai_mahasiswa WHERE id = ?';
+    
+    connectionPool.query(queryText, [id], (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data' });
+        }
+        if (data.length > 0) {
+            res.status(200).json(data[0]);
+        } else {
+            res.status(404).json({ error: 'Data tidak ditemukan' });
+        }
+    });
+};
+
+const updateNilaiMahasiswa = (req, res) => {
+    const { nama, mata_kuliah, nilai } = req.body;
+    const { id } = req.params;
+
+    
+    if (!nama || !mata_kuliah || nilai === undefined) {
+        return res.status(400).json({ error: 'Mohon isi nama, mata_kuliah, dan nilai' });
+    }
+
+    if (typeof nilai !== 'number' || nilai < 0 || nilai > 100) {
+        return res.status(400).json({ error: 'Data nilai salah: Nilai harus antara 0 dan 100' });
+    }
+
+    const indeks_nilai = getIndeksNilai(nilai); 
+
+    const queryText = 'UPDATE nilai_mahasiswa SET nama = ?, mata_kuliah = ?, nilai = ?, indeks_nilai = ?, updated_at = NOW() WHERE id = ?';
+    
+    connectionPool.query(queryText, [nama, mata_kuliah, nilai, indeks_nilai, id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Terjadi kesalahan saat mengupdate data' });
+        }
+        if (result.affectedRows > 0) {
+            res.status(200).json({ message: 'Data nilai mahasiswa berhasil diupdate' });
+        } else {
+            res.status(404).json({ error: 'Data tidak ditemukan' });
+        }
+    });
+};
+
+const deleteNilaiMahasiswa = (req, res) => {
+    const { id } = req.params;
+    const queryText = 'DELETE FROM nilai_mahasiswa WHERE id = ?';
+    
+    connectionPool.query(queryText, [id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Terjadi kesalahan saat menghapus data' });
+        }
+        if (result.affectedRows > 0) {
+            res.status(200).json({ message: 'Data nilai mahasiswa berhasil dihapus' });
+        } else {
+            res.status(404).json({ error: 'Data tidak ditemukan' });
+        }
+    });
+};
+
+module.exports = {createNilaiMahasiswa, readNilaiMahasiswa, readNilaiMahasiswaById, updateNilaiMahasiswa, deleteNilaiMahasiswa};
