@@ -28,10 +28,22 @@ const getMoviesID = (req, res) => {
         }
     })
 }
+
+const logMiddleware = (req, res, next) => {
+    console.log("Stop")
+    next()
+}
+
+const getText = (req, res) => {
+    res.status(200).json({text: "Ini text"})
+}
+
+
 app.get(`/`, (req, res) => {
     res.send("Hai")
     })
 
+app.get(`/text`, logMiddleware, getText)
 app.get(`/movie`, getMovies)
 app.get(`/movie/:id`, getMoviesID)
 
