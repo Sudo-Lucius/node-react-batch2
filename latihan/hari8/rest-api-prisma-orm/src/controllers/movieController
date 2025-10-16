@@ -1,0 +1,134 @@
+const { PrismaClient } = require('../../generated/prisma')
+const prisma = new PrismaClient()
+
+const createMovie = async (req, res) => {
+    let {title, year} = req.body
+    try{
+    const user = await prisma.movies.create({
+    data: {
+    title, year
+    },
+    })
+
+res.json({
+    data: user,
+    message: "movie created",
+    status: "success"
+})
+
+    } catch(err){ 
+    res.json({
+    message: "movie not created",
+    status: "not success"
+})
+}
+
+    //let {title, year} = req.body
+
+//    let queryText = `INSERT INTO movies (title, year, created_at, change_at) VALUES("${title}", ${year}, now(), now())`
+
+  //  connectionPool.query(queryText, (err) => {
+    //    if(err){
+      //      console.log(err)
+          //  return
+        //}
+    //})
+
+    //res.json({'message': 'Movie Was Succesfully Created', 'status': 'success'})
+}
+
+const readMovie = async (req, res) => {
+
+    const user = await prisma.movies.findMany()
+    res.json({
+        user
+    })
+
+   // let queryText = "SELECT * FROM movies"
+   // connectionPool.query(queryText, (err, data) => {
+
+   // if (err) {
+   // console.error(err);
+   // return;
+   // }
+  //  res.json(data);
+  //  });
+}
+
+const readMovieById = (req, res) => {
+    let {id} = req.params
+    let queryText = `SELECT * FROM movies WHERE id=${id}`
+    connectionPool.query(queryText, (err, data) => {
+        if (err) {
+        console.error(err);
+        return;
+    }
+        res.json(data);
+    });
+}
+
+const updateMovie = async (req, res) => {
+    let {title, year} = req.body
+    let {id} = req.params
+    
+    try{
+    const movies = await prisma.movies.update({
+        where: {
+            id: Number(id),
+        },
+        data: {
+            title,
+            year
+        },
+    })
+
+    res.json({
+        info : movies,
+        message : "Movie was Successfuly Updated",
+        status: "success"
+    })
+    return
+    }catch(err){
+        res.json({
+        info : null,
+        message : "Movie was Notfound",
+        status: "not found"
+    })
+    }
+}
+
+const deleteMovie = async (req, res) => {
+    let {id} = req.params
+    try{
+    const user = await prisma.movies.delete({
+        
+  where: {
+    id: Number(id),
+  },
+  })
+
+  res.json({
+        info: null,
+        message: "Movie was successfully Deleted",
+        status : "success"
+    })
+    
+   }catch(err){
+        res.json({
+            info: null,
+            message: err.message,
+            status : "error"
+        })
+    }
+//    let {id} = req.params
+//    let queryText = `DELETE FROM movies WHERE id=${id}`
+//    connectionPool.query(queryText, (err, data) => {
+//        if (err) {
+//        console.error(err);
+//        return;
+//    }
+//        res.json("Data telah dihapus");
+//    });
+}
+
+module.exports = {createMovie, readMovie, readMovieById, updateMovie, deleteMovie}
