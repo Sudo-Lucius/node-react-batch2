@@ -2,11 +2,11 @@ const { PrismaClient } = require('../../generated/prisma')
 const prisma = new PrismaClient()
 
 const createMovie = async (req, res) => {
-    let {title, year} = req.body
+    let {title, year, categoryId} = req.body
     try{
     const user = await prisma.movies.create({
     data: {
-    title, year
+    title, year, categoryId
     },
     })
 
@@ -68,7 +68,7 @@ const readMovieById = (req, res) => {
 }
 
 const updateMovie = async (req, res) => {
-    let {title, year} = req.body
+    let {title, year, categoryId} = req.body
     let {id} = req.params
     
     try{
@@ -78,7 +78,8 @@ const updateMovie = async (req, res) => {
         },
         data: {
             title,
-            year
+            year,
+            categoryId
         },
     })
 
