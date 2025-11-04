@@ -9,7 +9,6 @@ var kata5 = "seorang";
 var kata6 = "software";
 var kata7 = "engineer";
 
-// Penggabungan Kalimat
 var kalimat = perkenalan + " " + nama + ". " + kata1 + " " + kata2 + " " + kata3 + " " + kata4 + " " + kata5 + " " + kata6 + " " + kata7 + ".";
 
 console.log(kalimat);
@@ -20,15 +19,12 @@ console.log("Nomor 2");
 var abjad = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var angka = "0123456789";
 
-// 1. password1 = "TEST123"
 var password1 = abjad[19] + abjad[4] + abjad[18] + abjad[19] + angka[1] + angka[2] + angka[3];
 console.log("password ke satu : " + password1);
 
-// 2. password2 = "B3B3K"
 var password2 = abjad[1] + angka[3] + abjad[1] + angka[3] + abjad[10];
 console.log("password ke dua : " + password2);
 
-// 3. password3 = "R4H4514"
 var password3 = abjad[17] + angka[4] + abjad[7] + angka[4] + angka[5] + angka[1] + angka[4];
 console.log("password ke tiga : " + password3);
 
@@ -110,7 +106,6 @@ var lebar = "7";
 var alas = "6";
 var tinggi = "13";
 
-// Ubah ke tipe data integer
 panjang = parseInt(panjang);
 lebar = parseInt(lebar);
 alas = parseInt(alas);
@@ -129,19 +124,14 @@ console.log("Nomor 8");
 var sisi = " 1 2 ";
 var jariJari = "7.5";
 
-// Hapus seluruh spasi pada variabel 'sisi'
-sisi = sisi.replace(/\s+/g, ""); // hasilnya "12"
+sisi = sisi.replace(/\s+/g, ""); 
 
-// Ubah ke tipe data integer menggunakan Number()
 sisi = Number(sisi);
 
-// Ubah variabel jariJari ke tipe data float menggunakan parseFloat()
 jariJari = parseFloat(jariJari);
 
-// Hitung luas persegi dan luas lingkaran
 var luasPersegi = sisi * sisi;
 var luasLingkaran = 3.14 * jariJari * jariJari;
 
 console.log("Luas Persegi = " + luasPersegi);
 console.log("Luas Lingkaran = " + luasLingkaran);
-
