@@ -77,15 +77,12 @@ console.log("Nomor 5");
 
 var abjad = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-// 1. password pertama : HELLO
 var kode1 = abjad.indexOf("H") + "-" + abjad.indexOf("E") + "-" + abjad.indexOf("L") + "-" + abjad.indexOf("L") + "-" + abjad.indexOf("O");
 console.log("kode 1: " + kode1);
 
-// 2. password kedua : WORLD
 var kode2 = abjad.indexOf("W") + "-" + abjad.indexOf("O") + "-" + abjad.indexOf("R") + "-" + abjad.indexOf("L") + "-" + abjad.indexOf("D");
 console.log("kode 2: " + kode2);
 
-// 3. password ketiga : IMREADY
 var kode3 = abjad.indexOf("I") + "-" + abjad.indexOf("M") + "-" + abjad.indexOf("R") + "-" + abjad.indexOf("E") + "-" + abjad.indexOf("A") + "-" + abjad.indexOf("D") + "-" + abjad.indexOf("Y");
 console.log("kode 3: " + kode3);
 
@@ -97,7 +94,6 @@ var kedua = "senang";
 var ketiga = "belajar";
 var keempat = "javascript";
 
-// Ubah sesuai format yang diminta
 var hasil =
   pertama.charAt(0).toUpperCase() + pertama.slice(1) + " " +
   kedua.slice(0, 5) + kedua.charAt(5).toUpperCase() + " " +
@@ -120,7 +116,7 @@ lebar = parseInt(lebar);
 alas = parseInt(alas);
 tinggi = parseInt(tinggi);
 
-// Hitung luas persegi panjang dan luas segitiga
+
 var luasPersegiPanjang = panjang * lebar;
 var luasSegitiga = 0.5 * alas * tinggi;
 
