@@ -229,3 +229,49 @@ footer {
   font-weight: 600;
 }
 
+.portofolio .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+  }
+  
+  .portofolio .container-wrapping {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+  
+  .portofolio .container-wrapping__card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .portofolio .container-wrapping__card img {
+    width: 180px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  /* Efek zoom ketika hover */
+  .portofolio .container-wrapping__card img:hover {
+    transform: scale(1.5);
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .portofolio footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #444;
+  }
+  
