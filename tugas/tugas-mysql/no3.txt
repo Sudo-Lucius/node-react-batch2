@@ -1,0 +1,40 @@
+SELECT b.*
+FROM blog_posts b
+JOIN users u ON b.author_id = u.id
+WHERE u.name = 'John Doe';
+
+SELECT c.name AS category_name, b.title AS post_title, u.name AS author_name
+FROM blog_posts b
+JOIN post_categories pc ON b.id = pc.post_id
+JOIN categories c ON pc.category_id = c.id
+JOIN users u ON b.author_id = u.id
+WHERE c.name = 'Basic';
+
+SELECT c.name AS category_name, b.title AS post_title, b.body
+FROM blog_posts b
+JOIN post_categories pc ON b.id = pc.post_id
+JOIN categories c ON pc.category_id = c.id
+JOIN users u ON b.author_id = u.id
+WHERE u.name IN ('Robert', 'Frank');
+
+SELECT DISTINCT u.name AS author_name, c.name AS category_name
+FROM blog_posts b
+JOIN post_categories pc ON b.id = pc.post_id
+JOIN categories c ON pc.category_id = c.id
+JOIN users u ON b.author_id = u.id
+WHERE b.id IN (
+  SELECT post_id
+  FROM post_categories
+  GROUP BY post_id
+  HAVING COUNT(category_id) >= 2
+);
+
+SELECT u.name AS author_name, b.title AS post_title
+FROM blog_posts b
+JOIN users u ON b.author_id = u.id
+WHERE b.id IN (
+  SELECT post_id
+  FROM post_categories
+  GROUP BY post_id
+  HAVING COUNT(category_id) = 1
+);
