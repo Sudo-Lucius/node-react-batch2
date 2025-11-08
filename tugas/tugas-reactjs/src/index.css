@@ -1,48 +1,26 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0c0c0c;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root{
+  --bg:#eeeced;
+  --card:#ffffff;
+  --text:#2e3646;
+  --muted:#8b95a7;
+  --primary:#3ca4ea;
+  --primary-pressed:#e53935;
+  --line:#e8ebf0;
+  --ring:#b5d9fd;
+  --radius:16px;
 }
 
-img {
-  justify-content: center;
-  margin: auto;
-  display: block;
-  text-align: center;
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  display:grid;                 /* center card */
+  place-items:center;
+  padding:24px;
 }
 
-h1 {
-  color: #7b8996;
-  text-align: left;
-}
-
-h2 {
-  text-align: left;
-}
-
-button {
-  color: #ffffff;
-  padding: 15px;
-  width: 200px;
-  display: block;
-  margin: auto;
-  text-align: center;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #23282c;
-    background-color: #e4e0e0;
-  }
-  button{
-    background-color: #41a0df;
-  }
-}

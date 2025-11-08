@@ -1,16 +1,91 @@
-#root {
-  width: 350px;
-  margin-left: 660px;
-  margin-top: 170px;
-  padding: 80px;
-  background-color: rgba(255, 255, 255, 0.548);
+/* ====== CARD & LAYOUT ====== */
+.card{
+  width: 360px;                  /* lebih sempit seperti demo */
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(23,30,54,.10);
+  padding: 22px 22px 18px;
 }
 
-img {
-  display: block;
-  justify-content: center;
-  margin: auto;
-  text-align: center;
+/* brand/logo */
+.brand{ display:flex; justify-content:center; margin-bottom:10px; }
+.brand img{ height:38px; }
+
+/* judul & subjudul kecil */
+h1{
+  margin: 8px 0 2px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: #6f7c8f;                /* abu-abu kebiruan seperti demo */
 }
+.subtitle{
+  margin: 0 0 10px;
+  font-size: 11px;
+  color: #9aa5b5;
+}
+.divider{ height:1px; background:#edf1f5; margin:6px 0 10px; }
 
+/* ====== LIST ====== */
+.list{ margin:0; padding:0; list-style:none; }
 
+.item{
+  display:flex; align-items:center; gap:10px;
+  padding: 12px 2px;
+  position: relative;
+}
+.item::after{                     /* garis tipis antar item */
+  content:"";
+  position:absolute; left:0; right:0; bottom:0;
+  height:1px; background:#eef2f6;
+}
+.item:last-child::after{ display:none; }
+
+label{ cursor:pointer; flex:1; font-size:13px; color:#2f3a4a; }
+
+/* ====== CUSTOM CHECKBOX (kecil) ====== */
+input[type="checkbox"]{
+  width:16px; height:16px; margin:0;
+  border:1.5px solid #c5cfda; border-radius:4px; appearance:none;
+  display:grid; place-content:center; cursor:pointer; outline:none;
+  background:#f7f9fc;
+  transition:border-color .2s, background .2s, box-shadow .2s;
+}
+input[type="checkbox"]::before{
+  content:""; width:9px; height:9px; transform:scale(0);
+  transition:transform .18s ease-in-out;
+  clip-path:polygon(14% 44%, 0 64%, 50% 100%, 100% 18%, 80% 0, 43% 62%);
+  background:#fff;
+}
+input[type="checkbox"]:checked{
+  background:#3ca4ea; border-color:#3ca4ea;
+}
+input[type="checkbox"]:checked::before{ transform:scale(1); }
+input[type="checkbox"]:focus{ box-shadow:0 0 0 3px #b5d9fd; }
+
+/* ====== BUTTON ====== */
+.btn{
+  width:100%;
+  height:40px;
+  border:0;
+  border-radius:8px;
+  margin-top:12px;
+  text-transform:uppercase;
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.5px;
+  background:#3ca4ea;
+  color:#fff;
+  cursor:pointer;
+  transition:transform .06s ease, filter .2s ease, background .25s ease;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.12);  /* seperti garis bawah tombol di demo */
+}
+.btn:hover{ filter:brightness(1.03); }
+.btn:active{ transform:translateY(1px); }
+.btn:focus{ outline:none; box-shadow:0 0 0 4px #b5d9fd; }
+.btn.flash-red{ background:#e53935; }
+
+/* responsif kecil */
+@media (max-width:420px){
+  .card{ width: 92vw; }
+}
